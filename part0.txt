@@ -1,0 +1,40 @@
+title FullStackOpen part 0.4: New Note
+
+note over Browser: User types out note and clicks "save" 
+Browser->Server: HTTP POST request to https://studies.cs.helsinki.fi/exampleapp/new_note
+Server-->Browser: Status Code 302 (Found) - redirect to https://studies.cs.helsinki.fi/exampleapp/notes
+note over Browser: Browser loads notes page 
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: HTML-code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: main.js
+note over Browser: Browser executes JavaScript code to get data.JSON
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.JSON
+Server->Browser: [{"content": "My name is Maximus Decimus Meridius", "date": "2022-07-08T16:38:18.014Z"}]
+note over Browser: Browser executes the event handler that renders notes to display 
+
+
+title FullStackOpen part 0.5: Single Page App
+
+note over Browser: User visits https://studies.cs.helsinki.fi/exampleapp/spa 
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server-->Browser: HTML-code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server-->Browser: spa.js
+note over Browser: Browser loads notes page 
+
+
+
+title FullStackOpen part 0.6: New Note - SPA
+
+note over Browser: User writes note and clicks save 
+note over Browser: Browser executes JavaScript code to get data.JSON
+Browser->Server: HTTP POST request to https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note over Server: Server checks content-type header for note data, finds the note data, and parses it
+Server->Browser: [{"content": "My name is Maximus Decimus Meridius", "date": "2022-07-08T16:38:18.014Z"}]
+Server-->Browser: Sends data.json with Status Code 201 (Created) without redirect.
+note over Browser: Browser executes the event handler that renders notes to display without refresh 
